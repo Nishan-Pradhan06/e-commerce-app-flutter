@@ -30,9 +30,8 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-.web/
-.test/
-.linux/
+/web/build/
+/web/.dart_tool/
 
 # Symbolication related
 app.*.symbols
