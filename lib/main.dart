@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learining/contrast/const.dart';
-import 'views/login_pages/geting_start.dart';
+import 'package:learining/views/onboarding/onboarding_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: PRIMARY_COLOR),
         useMaterial3: true,
       ),
-      home: const GettingStart(),
+      home: const OnBoarding(),
     );
   }
 }

@@ -86,7 +86,7 @@ class GettingStart extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 80),
       child: Image.asset(
-        'assets/get.jpg',
+        'assets/get.png',
         height: 300,
       ),
     );
