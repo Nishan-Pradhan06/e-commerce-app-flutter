@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_overboard/flutter_overboard.dart';
-import '../login_pages/geting_start.dart';
+import 'getting_start.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key, this.title});
@@ -28,11 +28,17 @@ class _OnBoardingState extends State<OnBoarding> {
         inactiveBulletColor: Colors.purple.shade100,
         skipCallback: () {
           Navigator.of(context).push(
-              MaterialPageRoute(builder: ((context) => const GettingStart())));
+            MaterialPageRoute(
+              builder: ((context) => const GettingStart()),
+            ),
+          );
         },
         finishCallback: () {
           Navigator.of(context).push(
-              MaterialPageRoute(builder: ((context) => const GettingStart())));
+            MaterialPageRoute(
+              builder: ((context) => const GettingStart()),
+            ),
+          );
         },
       ),
     );
