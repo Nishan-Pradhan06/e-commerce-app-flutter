@@ -48,25 +48,25 @@ class _OnBoardingState extends State<OnBoarding> {
 final pages = [
   PageModel(
       color: const Color(0xFF0097A7),
-      imageAssetPath: 'assets/ecom.png',
+      imageAssetPath: 'assets/onboarding/ecom.png',
       title: 'Discover New Products',
       body: 'Explore and share your favorite products with your team.',
       doAnimateImage: true),
   PageModel(
       color: const Color(0xFF536DFE),
-      imageAssetPath: 'assets/img4.png',
+      imageAssetPath: 'assets/onboarding/img4.png',
       title: 'Boost Your Sales',
       body: 'Witness a surge in sales and productivity with our platform.',
       doAnimateImage: true),
   PageModel(
       color: const Color(0xFF9B90BC),
-      imageAssetPath: 'assets/img.png',
+      imageAssetPath: 'assets/onboarding/img.png',
       title: 'Global Connections',
       body: 'Connect with customers and sellers worldwide effortlessly.',
       doAnimateImage: true),
   PageModel(
     color: const Color(0xFF5886d6),
-    imageAssetPath: 'assets/transcation.png',
+    imageAssetPath: 'assets/onboarding/transcation.png',
     title: 'Secure Transactions',
     body:
         'Ensure Safe and Secure Transactions\nProtect Your Customers and Your Business.',

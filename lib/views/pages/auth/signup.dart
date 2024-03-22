@@ -26,12 +26,10 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        
         backgroundColor: BACKGOUND_COLOR,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40),
           child: ListView(
-          
             scrollDirection: Axis.vertical,
             physics: const ScrollPhysics(parent: BouncingScrollPhysics()),
             shrinkWrap: true,
@@ -128,7 +126,7 @@ class _SignUpState extends State<SignUp> {
                   SocialAuthButtonWidget(
                     onTap: () {},
                     text: 'Sign Up with Google',
-                    image: const AssetImage('assets/google.png'),
+                    image: const AssetImage('assets/icons/google.png'),
                     height: 60,
                     borderColor: Colors.grey,
                   ),
@@ -139,7 +137,7 @@ class _SignUpState extends State<SignUp> {
                     onTap: () {},
                     text: 'Sign Up with Facebook',
                     textColor: BACKGOUND_COLOR,
-                    image: const AssetImage('assets/facebook.png'),
+                    image: const AssetImage('assets/icons/facebook.png'),
                     height: 60,
                     color: FACEBOOK_COLOR,
                   ),

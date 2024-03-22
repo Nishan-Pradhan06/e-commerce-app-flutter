@@ -109,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                   SocialAuthButtonWidget(
                     onTap: () {},
                     text: 'Continue with Google',
-                    image: const AssetImage('assets/google.png'),
+                    image: const AssetImage('assets/icons/google.png'),
                     height: 60,
                     borderColor: Colors.grey,
                   ),
@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                     onTap: () {},
                     text: 'Continue with Facebook',
                     textColor: BACKGOUND_COLOR,
-                    image: const AssetImage('assets/facebook.png'),
+                    image: const AssetImage('assets/icons/facebook.png'),
                     height: 60,
                     color: FACEBOOK_COLOR,
                   ),
