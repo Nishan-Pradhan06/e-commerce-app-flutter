@@ -87,7 +87,7 @@ class _SignUpState extends State<SignUp> {
                     prefixIcon: const Icon(
                       Icons.lock,
                     ),
-                    suffixIcon: const Icon(Icons.remove_red_eye_rounded),
+                    suffixIcon: const Icon(Icons.visibility),
                   ),
                   const SizedBox(
                     height: 10,
@@ -103,7 +103,7 @@ class _SignUpState extends State<SignUp> {
                     prefixIcon: const Icon(
                       Icons.lock,
                     ),
-                    suffixIcon: const Icon(Icons.remove_red_eye_rounded),
+                    suffixIcon: const Icon(Icons.visibility),
                   ),
                   const SizedBox(
                     height: 30,

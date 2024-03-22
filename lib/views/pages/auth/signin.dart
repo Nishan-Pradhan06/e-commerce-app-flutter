@@ -84,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                     prefixIcon: const Icon(
                       Icons.lock,
                     ),
-                    suffixIcon: const Icon(Icons.remove_red_eye_rounded),
+                    suffixIcon: const Icon(Icons.visibility),
                   ),
                   const SizedBox(
                     height: 60,
