@@ -7,7 +7,7 @@ import '../../components/divider.dart';
 import '../../components/text_formfield_widget.dart';
 import '../../components/text_widget.dart';
 import 'signup.dart';
-import '../screens/home.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -18,10 +18,19 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   // final String _password = '';
+  final String _email = 'nishan';
+  bool isObsecured = true;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +73,13 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   TextFormFieldWidgets(
+                    validator: (value) {
+                      if (value == _email) {
+                        if (_formKey.currentState!.validate()) {
+                          Navigator.pushReplacementNamed(context, '/home');
+                        }
+                      }
+                    },
                     controller: _emailController,
                     hintText: "Email",
                     prefixIcon: const Icon(
@@ -80,22 +96,36 @@ class _LoginPageState extends State<LoginPage> {
                   TextFormFieldWidgets(
                     controller: _passController,
                     hintText: "Password",
-                    isObsecuredText: true,
+                    isObsecuredText: isObsecured,
                     prefixIcon: const Icon(
                       Icons.lock,
                     ),
-                    suffixIcon: const Icon(Icons.visibility),
+                    suffixIcon: IconButton(
+                      highlightColor: const Color(0x00ffffff),
+                      icon: isObsecured ==true
+                          ? const Icon(Icons.visibility)
+                          : const Icon(Icons.visibility_off),
+                      onPressed: () {
+                        setState(() {
+                          isObsecured = !isObsecured;
+                        });
+                      },
+                    ),
                   ),
                   const SizedBox(
                     height: 60,
                   ),
                   ButtonWidget(
                     onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const HomePage(),
-                        ),
-                      );
+                      // if (_formKey.currentState!.validate()) {
+                      //   Navigator.pushReplacementNamed(context, '/home');
+                      // }
+                
+                      // Navigator.of(context).push(
+                      //   MaterialPageRoute(
+                      //     builder: (context) => const HomePage(),
+                      //   ),
+                      // );
                     },
                     text: 'Log in',
                   ),

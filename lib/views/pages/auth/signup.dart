@@ -21,7 +21,8 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
   // final String _password = '';
-
+  bool isPassObsecured=true;
+  bool isConfirmPassObsecured=true;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -81,11 +82,21 @@ class _SignUpState extends State<SignUp> {
                   TextFormFieldWidgets(
                     controller: _passController,
                     hintText: "Password",
-                    isObsecuredText: true,
+                    isObsecuredText: isPassObsecured,
                     prefixIcon: const Icon(
                       Icons.lock,
                     ),
-                    suffixIcon: const Icon(Icons.visibility),
+                    suffixIcon: IconButton(
+                      highlightColor: const Color(0x00ffffff),
+                      icon: isPassObsecured
+                          ? const Icon(Icons.visibility)
+                          : const Icon(Icons.visibility_off),
+                      onPressed: () {
+                        setState(() {
+                          isPassObsecured = !isPassObsecured;
+                        });
+                      },
+                    ),
                   ),
                   const SizedBox(
                     height: 10,
@@ -97,11 +108,21 @@ class _SignUpState extends State<SignUp> {
                   TextFormFieldWidgets(
                     controller: _passController,
                     hintText: "Confirm Password",
-                    isObsecuredText: true,
+                    isObsecuredText: isConfirmPassObsecured,
                     prefixIcon: const Icon(
                       Icons.lock,
                     ),
-                    suffixIcon: const Icon(Icons.visibility),
+                    suffixIcon: IconButton(
+                      highlightColor: const Color(0x00ffffff),
+                      icon: isConfirmPassObsecured
+                          ? const Icon(Icons.visibility)
+                          : const Icon(Icons.visibility_off),
+                      onPressed: () {
+                        setState(() {
+                          isConfirmPassObsecured = !isConfirmPassObsecured;
+                        });
+                      },
+                    ),
                   ),
                   const SizedBox(
                     height: 30,

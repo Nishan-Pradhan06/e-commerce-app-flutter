@@ -10,6 +10,7 @@ class TextFormFieldWidgets extends StatelessWidget {
   final Widget? suffixIcon;
   final bool? isObsecuredText;
   final String? obsecureCharacter;
+  final String? Function(String?)? validator;
 
   const TextFormFieldWidgets({
     super.key,
@@ -19,11 +20,14 @@ class TextFormFieldWidgets extends StatelessWidget {
     this.isObsecuredText = false,
     required this.controller,
     this.obsecureCharacter = '*',
+    this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      // autovalidateMode: true,
+      validator: validator,
       obscureText: isObsecuredText!,
       obscuringCharacter: obsecureCharacter!,
       decoration: InputDecoration(
