@@ -79,6 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                           Navigator.pushReplacementNamed(context, '/home');
                         }
                       }
+                      return null;
                     },
                     controller: _emailController,
                     hintText: "Email",
