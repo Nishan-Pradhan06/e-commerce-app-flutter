@@ -1,10 +1,10 @@
 // ignore_for_file: avoid_print, must_be_immutable
 
-import 'package:e_commercee/controller/login_controller.dart';
-import 'package:e_commercee/views/components/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../constant/const.dart';
+import '../../../controller/login_controller.dart';
+import '../../components/button_widget.dart';
 import '../../components/divider.dart';
 import '../../components/text_formfield_widget.dart';
 import '../../components/text_widget.dart';
@@ -105,12 +105,19 @@ class LoginPage extends StatelessWidget {
                     const SizedBox(
                       height: 60,
                     ),
-                    ButtonWidget(
-                      onPressed: () {
-                        
-                      },
-                      text: 'Log in',
-                    ),
+                    GetBuilder<LoginController>(
+                        init: _loginController,
+                        builder: (controller) {
+                          return ButtonWidget(
+                            onPressed: () {
+                              if (!controller.isSignIn) {
+                                _loginController.onSubmitForm(context);
+                              }
+                              print(  "clicked");
+                            },
+                            text: 'Log in',
+                          );
+                        }),
                     const SizedBox(
                       height: 20,
                     ),
