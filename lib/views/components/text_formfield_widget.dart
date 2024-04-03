@@ -11,6 +11,7 @@ class TextFormFieldWidgets extends StatelessWidget {
   final bool? isObsecuredText;
   final String? obsecureCharacter;
   final String? Function(String?)? validator;
+  
 
   const TextFormFieldWidgets({
     super.key,
@@ -26,7 +27,7 @@ class TextFormFieldWidgets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      // autovalidateMode: true,
+      controller: controller,
       validator: validator,
       obscureText: isObsecuredText!,
       obscuringCharacter: obsecureCharacter!,

@@ -131,7 +131,7 @@ class _SignUpState extends State<SignUp> {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => const LoginPage(),
+                          builder: (context) => LoginPage(),
                         ),
                       );
                     },
@@ -182,7 +182,7 @@ class _SignUpState extends State<SignUp> {
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const LoginPage(),
+                            builder: (context) => LoginPage(),
                           ),
                         );
                       },
