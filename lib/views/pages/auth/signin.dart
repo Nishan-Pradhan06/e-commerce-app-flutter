@@ -24,7 +24,7 @@ class LoginPage extends StatelessWidget {
               const EdgeInsets.only(top: 40, bottom: 5, left: 40, right: 40),
           child: Form(
             autovalidateMode: AutovalidateMode.disabled,
-            key: _loginController.formKey,
+            key: _loginController.LoginformKey,
             child: ListView(
               scrollDirection: Axis.vertical,
               physics: const ScrollPhysics(parent: BouncingScrollPhysics()),
@@ -163,7 +163,7 @@ class LoginPage extends StatelessWidget {
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => const SignUp(),
+                              builder: (context) =>  SignUp(),
                             ),
                           );
                         },

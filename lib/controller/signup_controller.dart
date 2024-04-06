@@ -1,23 +1,22 @@
+import 'package:e_commercee/views/pages/auth/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:async';
 
-import '../views/pages/screens/home.dart';
-
-class LoginController extends GetxController {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passController = TextEditingController();
-  final GlobalKey<FormState> LoginformKey = GlobalKey<FormState>();
-
+class SignupControllers extends GetxController {
+  final TextEditingController SignupemailController = TextEditingController();
+  final TextEditingController SignuppassController = TextEditingController();
+  final GlobalKey<FormState> SignupformKey = GlobalKey<FormState>();
   bool isHidden = true;
-
   bool isSignIn = false;
+  bool isConfirmHidden = true;
+  bool isSignUp = false;
 
 
   @override
   void onClose() {
-    emailController.dispose();
-    passController.dispose();
+    SignupemailController.dispose();
+    SignuppassController.dispose();
     super.onClose();
   }
 
@@ -26,7 +25,10 @@ class LoginController extends GetxController {
     update();
   }
 
- 
+  void confirmtoggleVisibility() {
+    isConfirmHidden = !isConfirmHidden;
+    update();
+  }
 
   String? validateEmail(String? value) {
     if (value == null || value.isEmpty)
@@ -80,20 +82,18 @@ class LoginController extends GetxController {
     return null;
   }
 
-  Future<void> onSubmitForm(BuildContext context) async {
-    if (LoginformKey.currentState?.validate() == false) return;
-    isSignIn = true;
+  onSignupForm(BuildContext context) {
+    if (SignupformKey.currentState?.validate() == false) return;
+    isSignUp = true;
     update();
-    await Future.delayed(Duration(seconds: 3));
-    isSignIn = false;
+    Future.delayed(Duration(seconds: 2));
+    isSignUp = false;
     update();
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => HomePage(),
+        builder: (context) => LoginPage(),
       ),
     );
   }
-
-
 }
