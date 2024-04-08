@@ -103,7 +103,7 @@ class LoginPage extends StatelessWidget {
                           );
                         }),
                     const SizedBox(
-                      height: 60,
+                      height: 40,
                     ),
                     GetBuilder<LoginController>(
                         init: _loginController,
@@ -113,7 +113,7 @@ class LoginPage extends StatelessWidget {
                               if (!controller.isSignIn) {
                                 _loginController.onSubmitForm(context);
                               }
-                              print(  "clicked");
+                              print("clicked");
                             },
                             text: 'Log in',
                           );
@@ -146,7 +146,7 @@ class LoginPage extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 100),
+                  padding: const EdgeInsets.only(top: 60),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -163,7 +163,7 @@ class LoginPage extends StatelessWidget {
                         onTap: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) =>  SignUp(),
+                              builder: (context) => SignUp(),
                             ),
                           );
                         },

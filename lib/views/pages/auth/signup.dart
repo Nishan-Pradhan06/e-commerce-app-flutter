@@ -22,6 +22,7 @@ class SignUp extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40),
           child: Form(
+            autovalidateMode: AutovalidateMode.disabled,
             key: _signupController.SignupformKey,
             child: ListView(
               scrollDirection: Axis.vertical,
@@ -62,7 +63,10 @@ class SignUp extends StatelessWidget {
                         init: SignupControllers(),
                         builder: (SignupControllers controller) {
                           return TextFormFieldWidgets(
-                            controller: controller.SignupemailController,
+                            validator: (value) {
+                              return controller.validateEmail(value);
+                            },
+                            controller: _signupController.SignupemailController,
                             hintText: "Email",
                             prefixIcon: const Icon(
                               Icons.email,
@@ -80,7 +84,10 @@ class SignUp extends StatelessWidget {
                         init: SignupControllers(),
                         builder: (SignupControllers controller) {
                           return TextFormFieldWidgets(
-                            controller: controller.SignuppassController,
+                            validator: (value) {
+                              return controller.validatePassword(value);
+                            },
+                            controller: _signupController.SignuppassController,
                             hintText: "Password",
                             isObsecuredText: controller.isHidden,
                             prefixIcon: const Icon(
@@ -104,11 +111,14 @@ class SignUp extends StatelessWidget {
                       'Confirm Password',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    GetBuilder(
+                    GetBuilder<SignupControllers>(
                         init: SignupControllers(),
                         builder: (SignupControllers controller) {
                           return TextFormFieldWidgets(
-                            controller: controller.SignuppassController,
+                            validator: (value) {
+                              return controller.validatePassword(value);
+                            },
+                            controller: _signupController.ConfirmpassController,
                             hintText: "Confirm Password",
                             isObsecuredText: controller.isConfirmHidden,
                             prefixIcon: const Icon(
@@ -136,8 +146,11 @@ class SignUp extends StatelessWidget {
                               if (!controller.isSignUp) {
                                 _signupController.onSignupForm(context);
                               }
-                              print("clicked");
-                              print(_signupController.SignuppassController.text);
+                              print("SignUp");
+                              print(
+                                  _signupController.SignupemailController.text);
+                              print(
+                                  _signupController.SignuppassController.text);
                             },
                             text: 'Sign Up',
                           );
@@ -170,7 +183,7 @@ class SignUp extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 60),
+                  padding: const EdgeInsets.only(top: 40),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

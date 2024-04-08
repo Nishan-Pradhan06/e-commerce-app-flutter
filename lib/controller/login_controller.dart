@@ -10,7 +10,6 @@ class LoginController extends GetxController {
   final GlobalKey<FormState> LoginformKey = GlobalKey<FormState>();
 
   bool isHidden = true;
-
   bool isSignIn = false;
 
 

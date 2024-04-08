@@ -1,4 +1,3 @@
-import 'package:e_commercee/views/pages/auth/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:async';
@@ -6,17 +5,17 @@ import 'dart:async';
 class SignupControllers extends GetxController {
   final TextEditingController SignupemailController = TextEditingController();
   final TextEditingController SignuppassController = TextEditingController();
+  final TextEditingController ConfirmpassController = TextEditingController();
   final GlobalKey<FormState> SignupformKey = GlobalKey<FormState>();
   bool isHidden = true;
-  bool isSignIn = false;
   bool isConfirmHidden = true;
   bool isSignUp = false;
-
 
   @override
   void onClose() {
     SignupemailController.dispose();
     SignuppassController.dispose();
+    ConfirmpassController.dispose();
     super.onClose();
   }
 
@@ -78,6 +77,9 @@ class SignupControllers extends GetxController {
     if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
       return 'Password must contain at least one special character';
     }
+    if (value != SignuppassController.text) {
+      return "Password do'nt Match";
+    }
 
     return null;
   }
@@ -89,11 +91,5 @@ class SignupControllers extends GetxController {
     Future.delayed(Duration(seconds: 2));
     isSignUp = false;
     update();
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => LoginPage(),
-      ),
-    );
   }
 }
