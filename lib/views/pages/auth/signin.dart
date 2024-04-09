@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print, must_be_immutable
 
+import 'package:e_commercee/views/pages/auth/forget_password.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../constant/const.dart';
@@ -64,7 +65,7 @@ class LoginPage extends StatelessWidget {
                             validator: (value) {
                               return controller.validateEmail(value);
                             },
-                            controller: controller.emailController,
+                            controller: _loginController.emailController,
                             hintText: "Email",
                             prefixIcon: const Icon(
                               Icons.email,
@@ -79,31 +80,54 @@ class LoginPage extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     GetBuilder<LoginController>(
-                        init: LoginController(),
-                        builder: (LoginController controller) {
-                          return TextFormFieldWidgets(
-                            validator: (value) {
-                              return controller.validatePassword(value);
+                      init: LoginController(),
+                      builder: (LoginController controller) {
+                        return TextFormFieldWidgets(
+                          validator: (value) {
+                            return controller.validatePassword(value);
+                          },
+                          controller: _loginController.passController,
+                          hintText: "Password",
+                          isObsecuredText: controller.isHidden,
+                          prefixIcon: const Icon(
+                            Icons.lock,
+                          ),
+                          suffixIcon: IconButton(
+                            highlightColor: const Color(0x00ffffff),
+                            icon: controller.isHidden == true
+                                ? const Icon(Icons.visibility)
+                                : const Icon(Icons.visibility_off),
+                            onPressed: () {
+                              controller.tooglePasswordVisibility();
                             },
-                            controller: _loginController.passController,
-                            hintText: "Password",
-                            isObsecuredText: controller.isHidden,
-                            prefixIcon: const Icon(
-                              Icons.lock,
-                            ),
-                            suffixIcon: IconButton(
-                              highlightColor: const Color(0x00ffffff),
-                              icon: controller.isHidden == true
-                                  ? const Icon(Icons.visibility)
-                                  : const Icon(Icons.visibility_off),
-                              onPressed: () {
-                                controller.tooglePasswordVisibility();
-                              },
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => ForgetPassPage(),
                             ),
                           );
-                        }),
+                        },
+                        child: const Text(
+                          "Forget Password ?",
+                          style: TextStyle(
+                            color: PRIMARY_COLOR,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
                     const SizedBox(
-                      height: 40,
+                      height: 30,
                     ),
                     GetBuilder<LoginController>(
                         init: _loginController,
