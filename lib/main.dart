@@ -1,10 +1,15 @@
 import 'package:e_commercee/constant/const.dart';
+import 'package:e_commercee/firebase_options.dart';
 import 'package:e_commercee/views/pages/onboarding/onboarding_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'views/pages/splash_screen/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
