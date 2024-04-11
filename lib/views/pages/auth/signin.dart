@@ -9,6 +9,8 @@ import '../../components/button_widget.dart';
 import '../../components/divider.dart';
 import '../../components/text_formfield_widget.dart';
 import '../../components/text_widget.dart';
+import '../admin/admin_pages.dart';
+import '../user/user_pages.dart';
 import 'signup.dart';
 
 class LoginPage extends StatelessWidget {
@@ -133,13 +135,11 @@ class LoginPage extends StatelessWidget {
                         init: _loginController,
                         builder: (controller) {
                           return ButtonWidget(
-                            onPressed: () {
-                              if (!controller.isSignIn) {
-                                _loginController.onSubmitForm(context);
-                              }
-                              print("clicked");
-                            },
-                            text: 'Log in',
+                            onPressed: controller.isSignIn
+                                ? null
+                                : controller.onSubmitForm,
+                            text:
+                                controller.isSignIn ? "Please wait" : 'Log in',
                           );
                         }),
                     const SizedBox(
@@ -150,7 +150,13 @@ class LoginPage extends StatelessWidget {
                       height: 20,
                     ),
                     SocialAuthButtonWidget(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(() => AdminDashboard(),
+                            transition: Transition.fade,
+                            duration: Duration(
+                              seconds: 1,
+                            ));
+                      },
                       text: 'Continue with Google',
                       image: const AssetImage('assets/icons/google.png'),
                       height: 60,
@@ -160,7 +166,13 @@ class LoginPage extends StatelessWidget {
                       height: 30,
                     ),
                     SocialAuthButtonWidget(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(() => UserDashboard(),
+                            transition: Transition.fade,
+                            duration: Duration(
+                              seconds: 1,
+                            ));
+                      },
                       text: 'Continue with Facebook',
                       textColor: BACKGOUND_COLOR,
                       image: const AssetImage('assets/icons/facebook.png'),

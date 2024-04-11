@@ -1,5 +1,6 @@
 import 'package:e_commercee/views/components/button_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../components/text_widget.dart';
 import '../auth/signin.dart';
 
@@ -38,11 +39,11 @@ class GettingStart extends StatelessWidget {
             ),
             ButtonWidget(
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => LoginPage(),
-                  ),
-                );
+                Get.to(() => LoginPage(),
+                    transition: Transition.fade,
+                    duration: Duration(
+                      seconds: 1,
+                    ));
               },
               text: 'Get Started',
             )

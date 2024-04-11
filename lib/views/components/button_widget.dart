@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 //primary button
 class ButtonWidget extends StatefulWidget {
-  final VoidCallback onPressed;
+  final void Function()? onPressed;
   final String text;
   final Color color;
   final double height;
