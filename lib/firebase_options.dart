@@ -54,6 +54,7 @@ class DefaultFirebaseOptions {
     appId: '1:44453877964:android:f6bdce7ab1b9bb6621ca69',
     messagingSenderId: '44453877964',
     projectId: 'my-ecommerce-project-flutter',
+    databaseURL: 'https://my-ecommerce-project-flutter-default-rtdb.firebaseio.com',
     storageBucket: 'my-ecommerce-project-flutter.appspot.com',
   );
 
@@ -62,6 +63,7 @@ class DefaultFirebaseOptions {
     appId: '1:44453877964:ios:394841d6b9feea4721ca69',
     messagingSenderId: '44453877964',
     projectId: 'my-ecommerce-project-flutter',
+    databaseURL: 'https://my-ecommerce-project-flutter-default-rtdb.firebaseio.com',
     storageBucket: 'my-ecommerce-project-flutter.appspot.com',
     iosBundleId: 'com.example.eCommercee',
   );
