@@ -1,25 +1,22 @@
 class UserModel {
-  String User_id;
-  String User_name;
+  String uId;
+  String name;
   bool isAdmin;
   String email;
 
   UserModel({
-    required this.User_id,
-    required this.User_name,
+    required this.uId,
+    required this.name,
     required this.isAdmin,
     required this.email,
   });
-  factory UserModel.fromJson(Map data, String User_id) {
+
+  factory UserModel.fromJson(Map data, String uId) {
     return UserModel(
-      User_id: User_id,
-      User_name: data['name'],
+      uId: uId,
+      name: data['name'],
       isAdmin: data['isAdmin'],
       email: data['email'],
     );
-  }
-
-  void testfunction() {
-    print("This is a Test Function");
   }
 }
