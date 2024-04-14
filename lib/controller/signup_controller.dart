@@ -1,7 +1,10 @@
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'dart:async';
+
+import '../model/user_model.dart';
 
 class SignupControllers extends GetxController {
   final TextEditingController SignupemailController = TextEditingController();
@@ -11,6 +14,8 @@ class SignupControllers extends GetxController {
   bool isHidden = true;
   bool isConfirmHidden = true;
   bool isSignUp = false;
+  String? error;
+  UserModel? user;
 
   @override
   void onClose() {
@@ -85,13 +90,82 @@ class SignupControllers extends GetxController {
     return null;
   }
 
-  onSignupForm(BuildContext context) {
+  void onSignupForm() async {
     if (SignupformKey.currentState?.validate() == false) return;
     isSignUp = true;
     update();
-    Future.delayed(Duration(seconds: 2));
-    isSignUp = false;
-    update();
-    Navigator.of(context).pop();
+
+    // Delay the update call until after the build process is completed
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      try {
+        final UserCredential userCredential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: SignupemailController.text,
+          password: SignuppassController.text,
+        );
+        // Get a reference to the created user
+
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(userCredential.user?.uid)
+            .set({
+          'email': SignupemailController.text,
+          'name': 'user',
+          'isAdmin': 'false',
+        });
+        // final userCollection = FirebaseFirestore.instance.collection("users");
+        // final user = await userCollection.doc(userCredential.user!.uid).set({
+        //   'email': SignupemailController.text,
+
+        // });
+        // Get.off(() => LoginPage());
+        if (isSignUp == true) {
+          error = "Signup Sucessfull";
+          Fluttertoast.showToast(
+            msg: error.toString(),
+            gravity: ToastGravity.BOTTOM,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+        }
+      } on FirebaseAuthException catch (err) {
+        debugPrint(err.message.toString());
+        if (err.code == 'weak-password') {
+          error = "The password provided is too weak.";
+          Fluttertoast.showToast(
+            msg: error.toString(),
+            gravity: ToastGravity.BOTTOM,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+        } else if (err.code == 'email-already-in-use') {
+          error = "The account already exists for that email.";
+          Fluttertoast.showToast(
+            msg: error.toString(),
+            gravity: ToastGravity.BOTTOM,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+        } else {
+          error = 'Error occurred while signing up.';
+          Fluttertoast.showToast(
+            msg: error.toString(),
+            gravity: ToastGravity.BOTTOM,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+        }
+      } catch (e) {
+        Fluttertoast.showToast(
+          msg: e.toString(), // <- Fixed typo here, was `error.toString()`
+          gravity: ToastGravity.BOTTOM,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+      } finally {
+        isSignUp = false;
+        update();
+      }
+    });
   }
 }
