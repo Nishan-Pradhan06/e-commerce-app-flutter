@@ -13,6 +13,7 @@ class ResetPassword extends GetxController {
   bool isSending = false;
   bool isHidden = true;
   bool isConfirmHidden = true;
+  bool isOTPReceived = false;
 
   @override
   void onClose() {
@@ -77,7 +78,13 @@ class ResetPassword extends GetxController {
     if (VerifyEmail.currentState?.validate() == false) return;
     isSending = true;
     update();
-    Get.to(() => OTP_page());
+    Get.to(
+      () => OTP_page(),
+      transition: Transition.fade,
+      duration: Duration(
+        seconds: 1,
+      ),
+    );
   }
 
   void onPassRest() {
@@ -85,6 +92,12 @@ class ResetPassword extends GetxController {
   }
 
   void onOTPReceived() {
-    Get.to(() => PasswordReset());
+    Get.to(
+      () => PasswordReset(),
+      transition: Transition.fade,
+      duration: Duration(
+        seconds: 1,
+      ),
+    );
   }
 }

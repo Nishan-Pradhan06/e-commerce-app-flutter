@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../../../../constant/const.dart';
 import '../../../../controller/reset_pass_controller.dart';
+import '../../../components/button_widget.dart';
+import '../../../components/text_widget.dart';
 
 class OTP_page extends StatelessWidget {
   OTP_page({super.key});
@@ -11,10 +14,20 @@ class OTP_page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.only(bottom: 5, left: 40, right: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Center(
+              child: const GetTextWidget(
+                text: 'Enter Your OTP',
+                textAlign: TextAlign.center,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: SECONDARY_COLOR,
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
@@ -50,14 +63,28 @@ class OTP_page extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Resent in'),
+                SizedBox(
+                  width: 10,
+                ),
+                Text('20 Sec'),
+              ],
+            ),
+            SizedBox(height: 20),
             GetBuilder<ResetPassword>(
-                init: _otp,
-                builder: (controller) {
-                  return ElevatedButton(
-                    onPressed: controller.onOTPReceived,
-                    child: Text('Submit'),
-                  );
-                }),
+              init: _otp,
+              builder: (controller) {
+                return ButtonWidget(
+                  onPressed: controller.isOTPReceived
+                      ? null
+                      : controller.onOTPReceived,
+                  text: controller.isOTPReceived ? "Please Wait" : 'Submit',
+                );
+              },
+            ),
           ],
         ),
       ),

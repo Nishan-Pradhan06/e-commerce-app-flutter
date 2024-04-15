@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_print, must_be_immutable
 
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../constant/const.dart';
@@ -33,7 +32,6 @@ class LoginPage extends StatelessWidget {
                         // strokeCap: ,
                         // semanticsLabel: ,
                         // semanticsValue: ,
-                        
                       ),
                     )
                   : Padding(
@@ -133,7 +131,7 @@ class LoginPage extends StatelessWidget {
                                   alignment: Alignment.centerRight,
                                   child: GestureDetector(
                                     onTap: () {
-                                      Get.to(()=> ForgetPassPage());
+                                      Get.to(() => ForgetPassPage());
                                     },
                                     child: const Text(
                                       "Forget Password ?",
@@ -148,17 +146,18 @@ class LoginPage extends StatelessWidget {
                                   height: 30,
                                 ),
                                 GetBuilder<LoginController>(
-                                    init: _loginController,
-                                    builder: (controller) {
-                                      return ButtonWidget(
-                                        onPressed: controller.isSignIn
-                                            ? null
-                                            : controller.onSubmitForm,
-                                        text: controller.isSignIn
-                                            ? "Please Wait"
-                                            : 'Log in',
-                                      );
-                                    }),
+                                  init: _loginController,
+                                  builder: (controller) {
+                                    return ButtonWidget(
+                                      onPressed: controller.isSignIn
+                                          ? null
+                                          : controller.onSubmitForm,
+                                      text: controller.isSignIn
+                                          ? "Please Wait"
+                                          : 'Log in',
+                                    );
+                                  },
+                                ),
                                 const SizedBox(
                                   height: 20,
                                 ),
