@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print, must_be_immutable
 
-import 'package:e_commercee/views/pages/auth/forget_password.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../constant/const.dart';
@@ -11,6 +11,7 @@ import '../../components/text_formfield_widget.dart';
 import '../../components/text_widget.dart';
 import '../admin/admin_pages.dart';
 import '../user/user_pages.dart';
+import 'password_reset/verify_email.dart';
 import 'signup.dart';
 
 class LoginPage extends StatelessWidget {
@@ -132,12 +133,7 @@ class LoginPage extends StatelessWidget {
                                   alignment: Alignment.centerRight,
                                   child: GestureDetector(
                                     onTap: () {
-                                      Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              ForgetPassPage(),
-                                        ),
-                                      );
+                                      Get.to(()=> ForgetPassPage());
                                     },
                                     child: const Text(
                                       "Forget Password ?",

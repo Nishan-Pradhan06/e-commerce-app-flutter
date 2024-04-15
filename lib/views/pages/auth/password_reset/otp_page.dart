@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+
+import '../../../../controller/reset_pass_controller.dart';
 
 class OTP_page extends StatelessWidget {
-  const OTP_page({super.key});
+  OTP_page({super.key});
+  final ResetPassword _otp = Get.put(ResetPassword());
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +50,14 @@ class OTP_page extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: null,
-              child: Text('Submit'),
-            ),
+            GetBuilder<ResetPassword>(
+                init: _otp,
+                builder: (controller) {
+                  return ElevatedButton(
+                    onPressed: controller.onOTPReceived,
+                    child: Text('Submit'),
+                  );
+                }),
           ],
         ),
       ),
