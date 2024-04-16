@@ -121,7 +121,7 @@ class PasswordReset extends StatelessWidget {
                         builder: (controller) {
                           return ButtonWidget(
                             onPressed: controller.onPassRest,
-                            text: 'Send Code',
+                            text: 'Reset Password',
                           );
                         }),
 

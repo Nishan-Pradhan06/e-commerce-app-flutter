@@ -10,6 +10,7 @@ class SignupControllers extends GetxController {
   final TextEditingController SignupemailController = TextEditingController();
   final TextEditingController SignuppassController = TextEditingController();
   final TextEditingController ConfirmpassController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   final GlobalKey<FormState> SignupformKey = GlobalKey<FormState>();
   bool isHidden = true;
   bool isConfirmHidden = true;
@@ -92,11 +93,9 @@ class SignupControllers extends GetxController {
 
   void onSignupForm() async {
     if (SignupformKey.currentState?.validate() == false) return;
+    error = null;
     isSignUp = true;
     update();
-
-    // Delay the update call until after the build process is completed
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
       try {
         final UserCredential userCredential =
             await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -104,21 +103,15 @@ class SignupControllers extends GetxController {
           password: SignuppassController.text,
         );
         // Get a reference to the created user
-
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc(userCredential.user?.uid)
-            .set({
-          'email': SignupemailController.text,
-          'name': 'user',
-          'isAdmin': 'false',
+        final userCollection = FirebaseFirestore.instance.collection("users");
+        final userRef = userCollection.doc(userCredential.user!.uid);
+        await userRef.set({
+          "name": nameController.text,
+          "email": SignupemailController.text,
+          "isAdmin": false,
         });
-        // final userCollection = FirebaseFirestore.instance.collection("users");
-        // final user = await userCollection.doc(userCredential.user!.uid).set({
-        //   'email': SignupemailController.text,
 
-        // });
-        // Get.off(() => LoginPage());
+        Get.back();
         if (isSignUp == true) {
           error = "Signup Sucessfull";
           Fluttertoast.showToast(
@@ -166,6 +159,6 @@ class SignupControllers extends GetxController {
         isSignUp = false;
         update();
       }
-    });
+    
   }
 }
