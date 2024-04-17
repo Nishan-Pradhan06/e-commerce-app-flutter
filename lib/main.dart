@@ -21,6 +21,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      defaultTransition: Transition.fade,
+      transitionDuration: Duration(milliseconds: 300),
       title: 'Ambey Enterprise',
       theme: ThemeData(
         fontFamily: 'Poppins',

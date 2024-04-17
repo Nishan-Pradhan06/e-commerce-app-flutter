@@ -67,7 +67,7 @@ class ForgetPassPage extends StatelessWidget {
                           init: ResetPassword(),
                           builder: (ResetPassword controller) {
                             return TextFormFieldWidgets(
-                              controller: controller.email_reset_controller,
+                              controller: controller.emailpass_reset_controller,
                               validator: (value) {
                                 return controller.validateEmail(value);
                               },
@@ -84,7 +84,9 @@ class ForgetPassPage extends StatelessWidget {
                           init: _select_email,
                           builder: (controller) {
                             return ButtonWidget(
-                              onPressed: controller.onSentEmail,
+                              onPressed: () => controller.isSending
+                                  ? null
+                                  : controller.onSentEmail(context),
                               text: controller.isSending
                                   ? 'Please wait'
                                   : 'Send Code',

@@ -1,10 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../views/pages/auth/password_reset/otp_page.dart';
 import '../views/pages/auth/password_reset/reset_password.dart';
 
 class ResetPassword extends GetxController {
-  final TextEditingController email_reset_controller = TextEditingController();
+  final TextEditingController emailpass_reset_controller =
+      TextEditingController();
   final TextEditingController resetController = TextEditingController();
   final TextEditingController confirmResetController = TextEditingController();
   final GlobalKey<FormState> VerifyEmail = GlobalKey<FormState>();
@@ -17,7 +19,7 @@ class ResetPassword extends GetxController {
 
   @override
   void onClose() {
-    email_reset_controller.dispose();
+    emailpass_reset_controller.dispose();
     resetController.dispose();
     confirmResetController.dispose();
     super.onClose();
@@ -36,6 +38,19 @@ class ResetPassword extends GetxController {
   String? validateEmail(String? value) {
     if (value == null || value.isEmpty)
       return 'Please enter your Email Address';
+
+    // Regular expression pattern for email validation
+    final RegExp emailRegex = RegExp(
+      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+      caseSensitive: false,
+      multiLine: false,
+    );
+
+    // Check if the value matches the email pattern
+    if (!emailRegex.hasMatch(value)) {
+      return 'Please enter a valid Email Address';
+    }
+
     return null;
   }
 
@@ -74,10 +89,31 @@ class ResetPassword extends GetxController {
     return null;
   }
 
-  void onSentEmail() {
+  void onSentEmail(BuildContext context) async {
     if (VerifyEmail.currentState?.validate() == false) return;
     isSending = true;
     update();
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(
+          email: emailpass_reset_controller.text.trim());
+      showDialog(
+        context: context,
+        builder: (context) {
+          return Container(
+            height: 200,
+            width: 300,
+            child: Center(child: CircularProgressIndicator()),
+          );
+        },
+      );
+    } on FirebaseAuthException catch (e) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return CircularProgressIndicator();
+          });
+    }
+
     Get.to(
       () => OTP_page(),
       transition: Transition.fade,

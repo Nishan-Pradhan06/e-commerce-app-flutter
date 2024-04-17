@@ -63,17 +63,9 @@ class LoginController extends GetxController {
       this.user?.isAdmin == true
           ? Get.to(
               () => AdminDashboard(),
-              transition: Transition.fade,
-              duration: Duration(
-                seconds: 1,
-              ),
             )
           : Get.to(
               () => UserDashboard(),
-              transition: Transition.fade,
-              duration: Duration(
-                seconds: 1,
-              ),
             );
 
       if (isSignIn == true) {
