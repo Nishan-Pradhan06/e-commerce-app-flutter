@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
+import '../database/collection.dart';
 import '../model/user_model.dart';
 
 class SignupControllers extends GetxController {
@@ -96,69 +97,67 @@ class SignupControllers extends GetxController {
     error = null;
     isSignUp = true;
     update();
-      try {
-        final UserCredential userCredential =
-            await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: SignupemailController.text,
-          password: SignuppassController.text,
-        );
-        // Get a reference to the created user
-        final userCollection = FirebaseFirestore.instance.collection("users");
-        final userRef = userCollection.doc(userCredential.user!.uid);
-        await userRef.set({
-          "name": nameController.text,
-          "email": SignupemailController.text,
-          "isAdmin": false,
-        });
+    try {
+      final UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: SignupemailController.text,
+        password: SignuppassController.text,
+      );
+      // Get a reference to the created user
+      final userRef = userCollection.doc(userCredential.user!.uid);
+      await userRef.set({
+        "name": nameController.text,
+        "email": SignupemailController.text,
+        "isAdmin": false,
+      });
 
-        Get.back();
-        if (isSignUp == true) {
-          error = "Signup Sucessfull";
-          Fluttertoast.showToast(
-            msg: error.toString(),
-            gravity: ToastGravity.BOTTOM,
-            textColor: Colors.white,
-            fontSize: 16.0,
-          );
-        }
-      } on FirebaseAuthException catch (err) {
-        debugPrint(err.message.toString());
-        if (err.code == 'weak-password') {
-          error = "The password provided is too weak.";
-          Fluttertoast.showToast(
-            msg: error.toString(),
-            gravity: ToastGravity.BOTTOM,
-            textColor: Colors.white,
-            fontSize: 16.0,
-          );
-        } else if (err.code == 'email-already-in-use') {
-          error = "The account already exists for that email.";
-          Fluttertoast.showToast(
-            msg: error.toString(),
-            gravity: ToastGravity.BOTTOM,
-            textColor: Colors.white,
-            fontSize: 16.0,
-          );
-        } else {
-          error = 'Error occurred while signing up.';
-          Fluttertoast.showToast(
-            msg: error.toString(),
-            gravity: ToastGravity.BOTTOM,
-            textColor: Colors.white,
-            fontSize: 16.0,
-          );
-        }
-      } catch (e) {
+      Get.back();
+      if (isSignUp == true) {
+        error = "Signup Sucessfull";
         Fluttertoast.showToast(
-          msg: e.toString(), // <- Fixed typo here, was `error.toString()`
+          msg: error.toString(),
           gravity: ToastGravity.BOTTOM,
           textColor: Colors.white,
           fontSize: 16.0,
         );
-      } finally {
-        isSignUp = false;
-        update();
       }
-    
+    } on FirebaseAuthException catch (err) {
+      debugPrint(err.message.toString());
+      if (err.code == 'weak-password') {
+        error = "The password provided is too weak.";
+        Fluttertoast.showToast(
+          msg: error.toString(),
+          gravity: ToastGravity.BOTTOM,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+      } else if (err.code == 'email-already-in-use') {
+        error = "The account already exists for that email.";
+        Fluttertoast.showToast(
+          msg: error.toString(),
+          gravity: ToastGravity.BOTTOM,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+      } else {
+        error = 'Error occurred while signing up.';
+        Fluttertoast.showToast(
+          msg: error.toString(),
+          gravity: ToastGravity.BOTTOM,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+      }
+    } catch (e) {
+      Fluttertoast.showToast(
+        msg: e.toString(), // <- Fixed typo here, was `error.toString()`
+        gravity: ToastGravity.BOTTOM,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    } finally {
+      isSignUp = false;
+      update();
+    }
   }
 }

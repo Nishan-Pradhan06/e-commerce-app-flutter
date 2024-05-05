@@ -1,10 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commercee/views/pages/admin/admin_pages.dart';
 import 'package:e_commercee/views/pages/user/user_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import '../database/collection.dart';
 import '../model/user_model.dart';
 
 class LoginController extends GetxController {
@@ -55,9 +55,7 @@ class LoginController extends GetxController {
       );
 
       // User collection is the reference of collection
-      final userCollection = FirebaseFirestore.instance.collection("users");
       final user = await userCollection.doc(userCredential.user!.uid).get();
-
       this.user = UserModel.fromJson(user.data()!, userCredential.user!.uid);
 
       this.user?.isAdmin == true
