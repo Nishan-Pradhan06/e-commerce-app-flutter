@@ -4,8 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import '../database/collection.dart';
-import '../model/user_model.dart';
+import '../../database/collection.dart';
+import '../../model/user_model.dart';
 
 class LoginController extends GetxController {
   final TextEditingController emailController = TextEditingController();

@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../views/pages/auth/password_reset/otp_page.dart';
-import '../views/pages/auth/password_reset/reset_password.dart';
+import '../../views/pages/auth/password_reset/otp_page.dart';
+import '../../views/pages/auth/password_reset/reset_password.dart';
 
 class ResetPassword extends GetxController {
   final TextEditingController emailpass_reset_controller =

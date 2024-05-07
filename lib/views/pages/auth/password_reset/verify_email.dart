@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print, must_be_immutable
 
-import 'package:e_commercee/controller/reset_pass_controller.dart';
+import 'package:e_commercee/controller/auth/reset_pass_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../constant/const.dart';

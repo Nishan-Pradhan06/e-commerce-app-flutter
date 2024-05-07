@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../constant/const.dart';
-import '../../../../controller/reset_pass_controller.dart';
+import '../../../../controller/auth/reset_pass_controller.dart';
 import '../../../components/button_widget.dart';
 import '../../../components/text_formfield_widget.dart';
 import '../../../components/text_widget.dart';
