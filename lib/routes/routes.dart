@@ -1,6 +1,6 @@
 
 import 'package:go_router/go_router.dart';
-import '../views/pages/admin/admin_pages.dart';
+import '../views/pages/admin/admin_home.dart';
 import '../views/pages/auth/signin.dart';
 import '../views/pages/auth/signup.dart';
 import '../views/pages/onboarding/getting_start.dart';
@@ -15,7 +15,7 @@ final GoRouter _goRouter = GoRouter(
     ),
     GoRoute(
       path: '/adminDashboard',
-      builder: (context, state) => AdminDashboard() ,
+      builder: (context, state) => AdminHome() ,
     ),
     GoRoute(
       path: '/onBoarding',

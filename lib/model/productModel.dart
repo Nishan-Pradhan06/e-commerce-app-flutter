@@ -1,5 +1,5 @@
 class ProductModel {
-  final String productname;
+  final String productName;
   final double price;
   final String description;
   final String discount;
@@ -9,7 +9,7 @@ class ProductModel {
   final String? documentsId;
 
   ProductModel({
-    required this.productname,
+    required this.productName,
     required this.price,
     required this.description,
     required this.discount,
@@ -21,7 +21,7 @@ class ProductModel {
 
   Map<String, dynamic> toJson() {
     return {
-      'productname': productname,
+      'productName': productName,
       'price': price,
       'description': description,
       'discount': discount,
@@ -33,7 +33,7 @@ class ProductModel {
 
   factory ProductModel.fromJson(Map<String, dynamic> json, String documentsId) {
     return ProductModel(
-      productname: json['productname'],
+      productName: json['productName'],
       price: json['price'],
       description: json['description'],
       discount: json['discount'],
@@ -45,7 +45,7 @@ class ProductModel {
   }
 
   ProductModel copyWith({
-    String? productname,
+    String? productName,
     double? price,
     String? description,
     String? discount,
@@ -55,7 +55,7 @@ class ProductModel {
     String? documentsId,
   }) {
     return new ProductModel(
-      productname: productname ?? this.productname,
+      productName: productName ?? this.productName,
       price: price ?? this.price,
       description: description ?? this.description,
       discount: discount ?? this.discount,

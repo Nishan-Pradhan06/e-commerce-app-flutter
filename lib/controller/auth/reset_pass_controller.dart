@@ -106,7 +106,7 @@ class ResetPassword extends GetxController {
           );
         },
       );
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       showDialog(
           context: context,
           builder: (context) {

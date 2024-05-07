@@ -1,17 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class UserDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('User Dashboard'),
+        title: Text('User Home'),
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
             icon: Icon(Icons.logout),
             onPressed: () {
-              // Implement logout functionality
-              Navigator.pop(context); // Example: pop back to login page
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text("Logout"),
+                    content: Text("Are you sure you want to log out?"),
+                    actions: [
+                      ElevatedButton(
+                        child: Text("Cancel"),
+                        onPressed: () {
+                          Navigator.of(context).pop(); // Close the dialog
+                        },
+                      ),
+                      ElevatedButton(
+                        child: Text("Logout"),
+                        onPressed: () {
+                          // Implement logout functionality
+                          Navigator.of(context).pop(); // Close the dialog
+                          Navigator.pop(
+                              context); // Example: pop back to login page
+                          Fluttertoast.showToast(
+                            msg:
+                                'Logout Sucessfully', // <- Fixed typo here, was `error.toString()`
+                            gravity: ToastGravity.BOTTOM,
+                            textColor: Colors.white,
+                            fontSize: 16.0,
+                          );
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
             },
           ),
         ],

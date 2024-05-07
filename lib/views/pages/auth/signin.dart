@@ -8,7 +8,7 @@ import '../../components/button_widget.dart';
 import '../../components/divider.dart';
 import '../../components/text_formfield_widget.dart';
 import '../../components/text_widget.dart';
-import '../admin/admin_pages.dart';
+import '../admin/admin_home.dart';
 import '../user/user_pages.dart';
 import 'password_reset/verify_email.dart';
 import 'signup.dart';
@@ -168,7 +168,7 @@ class LoginPage extends StatelessWidget {
                                 SocialAuthButtonWidget(
                                   onTap: () {
                                     Get.to(
-                                      () => AdminDashboard(),
+                                      () => AdminHome(),
                                       transition: Transition.fade,
                                       duration: Duration(
                                         seconds: 1,

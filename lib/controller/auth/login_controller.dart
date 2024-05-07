@@ -1,4 +1,4 @@
-import 'package:e_commercee/views/pages/admin/admin_pages.dart';
+import 'package:e_commercee/views/pages/admin/admin_home.dart';
 import 'package:e_commercee/views/pages/user/user_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +60,7 @@ class LoginController extends GetxController {
 
       this.user?.isAdmin == true
           ? Get.to(
-              () => AdminDashboard(),
+              () => AdminHome(),
             )
           : Get.to(
               () => UserDashboard(),
