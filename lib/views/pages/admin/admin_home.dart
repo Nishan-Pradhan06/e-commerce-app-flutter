@@ -1,4 +1,5 @@
 import 'package:e_commercee/controller/admin/productController.dart';
+import 'package:e_commercee/views/pages/admin/add_products.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -50,7 +51,7 @@ class AdminHome extends StatelessWidget {
                               context); // Example: pop back to login page
                           Fluttertoast.showToast(
                             msg:
-                                'Logout Sucessfully', // <- Fixed typo here, was `error.toString()`
+                                'Logout Sucessfully',
                             gravity: ToastGravity.BOTTOM,
                             textColor: Colors.white,
                             fontSize: 16.0,
@@ -106,7 +107,7 @@ class AdminHome extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Navigate to AddProduct page
-          // Get.to(() => AddProduct());
+          Get.to(() => AddProductsPage());
         },
         child: Icon(Icons.add),
       ),
