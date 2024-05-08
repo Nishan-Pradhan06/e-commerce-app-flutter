@@ -15,13 +15,13 @@ class AddProductController extends GetxController {
   final TextEditingController _stockController = TextEditingController();
   final TextEditingController _brandNameController = TextEditingController();
 
-  final _addProductGlobalFormKey = GlobalKey<FormState>();
+  final addProductGlobalFormKey = GlobalKey<FormState>();
 
   bool isAddingProduct = false;
   File? _image;
 
 //validating the product name is empty or not
-  String? validateIsProductEmpty(String? value) {
+  String? validateIsProductName(String? value) {
     if (value == null || value.isEmpty)
       return "Please enter product name";
     else
@@ -41,7 +41,7 @@ class AddProductController extends GetxController {
 //validating discount
   String? validateDiscount(String value) {
     if (double.tryParse(value) == null)
-      return 'Please enter a valid price';
+      return 'Please enter a valid discount';
     else
       return null;
   }
@@ -74,7 +74,7 @@ class AddProductController extends GetxController {
       return null;
   }
 
-  Future<void> _getImage() async {
+  Future<void> GetImage() async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
@@ -85,8 +85,8 @@ class AddProductController extends GetxController {
     }
   }
 
-  Future<void> _addProduct() async {
-    if (_addProductGlobalFormKey.currentState!.validate()) {
+  Future<void> AddProduct() async {
+    if (addProductGlobalFormKey.currentState!.validate()) {
       isAddingProduct = true;
       try {
         final Reference ref = FirebaseStorage.instance

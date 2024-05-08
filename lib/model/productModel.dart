@@ -2,7 +2,7 @@ class ProductModel {
   final String productName;
   final double price;
   final String description;
-  final String discount;
+  final double discount;
   final int stock;
   final String brandName;
   final String imageUrl;
@@ -48,7 +48,7 @@ class ProductModel {
     String? productName,
     double? price,
     String? description,
-    String? discount,
+    double? discount,
     int? stock,
     String? brandName,
     String? imageUrl,
