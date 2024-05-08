@@ -20,6 +20,60 @@ class AddProductController extends GetxController {
   bool isAddingProduct = false;
   File? _image;
 
+//validating the product name is empty or not
+  String? validateIsProductEmpty(String? value) {
+    if (value == null || value.isEmpty)
+      return "Please enter product name";
+    else
+      return null;
+  }
+
+//validating price should be a number and greater than zero
+  String? validatePrice(String? value) {
+    if (value == null || value.isEmpty)
+      return 'Please enter price.';
+    else if (double.tryParse(value) == null)
+      return 'Please enter a valid price';
+    else
+      return null;
+  }
+
+//validating discount
+  String? validateDiscount(String value) {
+    if (double.tryParse(value) == null)
+      return 'Please enter a valid price';
+    else
+      return null;
+  }
+
+  //validating description
+  String? validateDescription(String? value) {
+    if (value == null || value.isEmpty)
+      return 'Please enter a description';
+    else if (value.length < 10)
+      return 'Description must contain at least  10 characters.';
+    else
+      return null;
+  }
+
+  //validating stock
+  String? validateStock(String? value) {
+    if (value == null || value.isEmpty)
+      return 'Please enter a Stock';
+    else if (int.tryParse(value) == null)
+      return 'Please enter a valid integer for stock';
+    else
+      return null;
+  }
+
+  //validating brandname
+  String? validateBrandName(String? value) {
+    if (value == null || value.isEmpty)
+      return 'Please enter a brand name';
+    else
+      return null;
+  }
+
   Future<void> _getImage() async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
