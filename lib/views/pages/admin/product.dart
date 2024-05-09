@@ -17,7 +17,7 @@ class AdminProductDetails extends StatelessWidget {
         children: [
           Image.network(
             faker.image.image(),
-            width: MediaQuery.of(context).size.width,
+            width:MediaQuery.of(context).size.width,
           ),
           Text(faker.commerce.department()),
         ],

@@ -14,6 +14,7 @@ class AddProductController extends GetxController {
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _stockController = TextEditingController();
   final TextEditingController _brandNameController = TextEditingController();
+  final TextEditingController imageController = TextEditingController();
 
   final addProductGlobalFormKey = GlobalKey<FormState>();
 
@@ -88,12 +89,19 @@ class AddProductController extends GetxController {
 
     if (pickedFile != null) {
       _image = File(pickedFile.path);
+      print(_image);
     } else {
       print('No image selected.');
     }
+    update();
   }
 
   Future<void> AddProduct() async {
+    if (_image == null) {
+      print('No image selected.');
+      return; // Exit function if no image is selected
+    }
+
     if (addProductGlobalFormKey.currentState!.validate()) {
       isAddingProduct = true;
       try {
@@ -113,7 +121,7 @@ class AddProductController extends GetxController {
           'brandName': _brandNameController.text,
           'imageUrl': imageUrl,
         });
-        Fluttertoast.showToast(msg: 'Product added Sucessfuly!');
+        Fluttertoast.showToast(msg: 'Product added Successfully!');
       } catch (error) {
         print('Error While adding product: $error');
         Fluttertoast.showToast(

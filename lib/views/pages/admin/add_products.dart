@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:e_commercee/controller/admin/productAddController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,7 +9,7 @@ import '../../components/custonButton.dart';
 class AddProductsPage extends StatelessWidget {
   AddProductsPage({Key? key}) : super(key: key);
   final AddProductController _addProduct = Get.put(AddProductController());
-
+  File? _image;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,9 +116,13 @@ class AddProductsPage extends StatelessWidget {
                       init: _addProduct,
                       builder: (controller) {
                         return TextFormField(
+                          controller: controller.imageController,
                           readOnly: true,
                           decoration: InputDecoration(
                             labelText: "Product Image",
+                            hintText: _image != null
+                                ? _image!.path.split('/').last
+                                : "Product Image",
                             suffixIcon: IconButton(
                               onPressed: () {
                                 controller.GetImage();
