@@ -39,8 +39,8 @@ class AddProductController extends GetxController {
   }
 
 //validating discount
-  String? validateDiscount(String value) {
-    if (double.tryParse(value) == null)
+  String? validateDiscount(String? value) {
+    if (double.tryParse(value!) == null)
       return 'Please enter a valid discount';
     else
       return null;
@@ -70,6 +70,14 @@ class AddProductController extends GetxController {
   String? validateBrandName(String? value) {
     if (value == null || value.isEmpty)
       return 'Please enter a brand name';
+    else
+      return null;
+  }
+
+  //validating brandname
+  String? validateImage(String? value) {
+    if (value == null || value.isEmpty)
+      return 'Please enter a image';
     else
       return null;
   }
@@ -107,7 +115,7 @@ class AddProductController extends GetxController {
         });
         Fluttertoast.showToast(msg: 'Product added Sucessfuly!');
       } catch (error) {
-        print('Errpr While adding product: $error');
+        print('Error While adding product: $error');
         Fluttertoast.showToast(
             msg: 'Failed to add product. Please try again later.');
       } finally {
